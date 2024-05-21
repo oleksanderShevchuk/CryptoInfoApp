@@ -1,13 +1,5 @@
-﻿using System.Text;
+﻿using CryptoInfoApp.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CryptoInfoApp
 {
@@ -19,6 +11,7 @@ namespace CryptoInfoApp
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }

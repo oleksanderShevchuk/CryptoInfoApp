@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoInfoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="CryptoApp" Height="450" Width="800">
     <Grid>
-
+        <ListView ItemsSource="{Binding Coins}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding MarketCapRank}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding CurrentPrice}" />
+                    <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
