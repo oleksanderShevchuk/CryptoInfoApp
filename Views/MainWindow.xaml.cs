@@ -1,7 +1,7 @@
 ﻿using CryptoInfoApp.ViewModels;
 using System.Windows;
 
-namespace CryptoInfoApp
+namespace CryptoInfoApp.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
