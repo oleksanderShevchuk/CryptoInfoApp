@@ -1,0 +1,41 @@
+﻿<Window x:Class="CryptoInfoApp.Views.CoinDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CryptoInfoApp.Views"
+        mc:Ignorable="d"
+        Title="CoinDetailView" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="{Binding CoinDetail.Name}" FontSize="24" FontWeight="Bold" />
+            <TextBlock Text="{Binding CoinDetail.Symbol}" FontSize="18" />
+            <TextBlock Text="Price: " FontSize="16" FontWeight="Bold"/>
+            <TextBlock Text="{Binding CoinDetail.MarketData.CurrentPrice[usd]}" FontSize="16"/>
+            <TextBlock Text="Volume: " FontSize="16" FontWeight="Bold"/>
+            <TextBlock Text="{Binding CoinDetail.MarketData.TotalVolume[usd]}" FontSize="16"/>
+            <TextBlock Text="24h Change: " FontSize="16" FontWeight="Bold"/>
+            <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h}" FontSize="16"/>
+            <TextBlock Text="Markets: " FontSize="16" FontWeight="Bold"/>
+            <ListView ItemsSource="{Binding CoinDetail.Tickers}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Market" DisplayMemberBinding="{Binding Market.Name}" />
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Last}" />
+                        <GridViewColumn Header="Link">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="View" Foreground="Blue" Cursor="Hand">
+                                        <TextBlock.InputBindings>
+                                            <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding TradeUrl}" />
+                                        </TextBlock.InputBindings>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
