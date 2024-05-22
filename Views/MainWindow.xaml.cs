@@ -1,4 +1,5 @@
-﻿using CryptoInfoApp.ViewModels;
+﻿using CryptoInfoApp.Services;
+using CryptoInfoApp.ViewModels;
 using System.Windows;
 
 namespace CryptoInfoApp.Views
@@ -11,7 +12,8 @@ namespace CryptoInfoApp.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            var cryptoService = new CoinGeckoService();
+            DataContext = new MainViewModel(cryptoService);
         }
     }
 }

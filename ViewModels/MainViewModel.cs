@@ -4,15 +4,26 @@ using CryptoInfoApp.Services;
 using CryptoInfoApp.Views;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace CryptoInfoApp.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private readonly CoinGeckoService _coinGeckoService;
+        private readonly ICryptoService _cryptoService;
         private ObservableCollection<Coin> _coins;
+        private ObservableCollection<Coin> _allCoins;
+        private string _searchQuery;
+        public MainViewModel(ICryptoService cryptoService)
+        {
+            _cryptoService = cryptoService;
+            LoadDataCommand = new RelayCommand(async () => await LoadData());
+            SearchCommand = new RelayCommand(param => ExecuteSearch());
+            ShowDetailsCommand = new RelayCommand(param => ShowDetails(param));
 
+            LoadData();
+        }
         public ObservableCollection<Coin> Coins
         {
             get { return _coins; }
@@ -22,18 +33,24 @@ namespace CryptoInfoApp.ViewModels
                 OnPropertyChanged(nameof(Coins));
             }
         }
-        public ICommand ShowDetailsCommand { get; }
-
-        public MainViewModel()
+        public string SearchQuery
         {
-            _coinGeckoService = new CoinGeckoService();
-            LoadData();
-            ShowDetailsCommand = new RelayCommand(ShowDetails);
+            get => _searchQuery;
+            set
+            {
+                _searchQuery = value;
+                OnPropertyChanged(nameof(SearchQuery));
+                ExecuteSearch();
+            }
         }
+        public ICommand ShowDetailsCommand { get; }
+        public ICommand LoadDataCommand { get; }
+        public ICommand SearchCommand { get; }
 
-        private async void LoadData()
+        private async Task LoadData()
         {
-            var coins = await _coinGeckoService.GetTopCoinsAsync(10);
+            var coins = await _cryptoService.GetTopCoinsAsync(10);
+            _allCoins = new ObservableCollection<Coin>(coins);
             Coins = new ObservableCollection<Coin>(coins);
         }
 
@@ -48,12 +65,23 @@ namespace CryptoInfoApp.ViewModels
                 detailWindow.Show();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+        private void ExecuteSearch()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (string.IsNullOrEmpty(SearchQuery))
+            {
+                Coins = _allCoins;
+            }
+            else
+            {
+                var filteredCoins = _allCoins.Where(c => c.Name.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                                                         c.Symbol.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase));
+                Coins = new ObservableCollection<Coin>(filteredCoins);
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
-
 }

@@ -17,25 +17,27 @@
             <TextBlock Text="24h Change: " FontSize="16" FontWeight="Bold"/>
             <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h}" FontSize="16"/>
             <TextBlock Text="Markets: " FontSize="16" FontWeight="Bold"/>
-            <ListView ItemsSource="{Binding CoinDetail.Tickers}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Market" DisplayMemberBinding="{Binding Market.Name}" />
-                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Last}" />
-                        <GridViewColumn Header="Link">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="View" Foreground="Blue" Cursor="Hand">
-                                        <TextBlock.InputBindings>
-                                            <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding TradeUrl}" />
-                                        </TextBlock.InputBindings>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Height="600">
+                <ListView ItemsSource="{Binding CoinDetail.Tickers}" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=StackPanel}}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Market" DisplayMemberBinding="{Binding Market.Name}" />
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Last}" />
+                            <GridViewColumn Header="Link">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="View" Foreground="Blue" Cursor="Hand">
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding TradeUrl}" />
+                                            </TextBlock.InputBindings>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Window>

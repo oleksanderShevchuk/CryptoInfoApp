@@ -6,23 +6,29 @@
         mc:Ignorable="d"
         Title="CryptoInfoApp" Height="450" Width="800">
     <Grid>
-        <ListView ItemsSource="{Binding Coins}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding MarketCapRank}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding CurrentPrice}" />
-                    <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap}" />
-                    <GridViewColumn Header="Details">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="View Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="10" 
+                     Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Search" Command="{Binding SearchCommand}" Margin="10" />
+
+            <ListView ItemsSource="{Binding Coins}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding MarketCapRank}" />
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding CurrentPrice}" />
+                        <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap}" />
+                        <GridViewColumn Header="Details">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="View Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Window>
