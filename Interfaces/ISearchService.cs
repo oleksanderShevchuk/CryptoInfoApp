@@ -1,7 +1,7 @@
 ﻿using CryptoInfoApp.Models;
 using System.Collections.ObjectModel;
 
-namespace CryptoInfoApp.Services
+namespace CryptoInfoApp.Interfaces
 {
     public interface ISearchService
     {

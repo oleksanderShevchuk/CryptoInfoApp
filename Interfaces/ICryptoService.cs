@@ -1,6 +1,6 @@
 ﻿using CryptoInfoApp.Models;
 
-namespace CryptoInfoApp.Services
+namespace CryptoInfoApp.Interfaces
 {
     public interface ICryptoService
     {
