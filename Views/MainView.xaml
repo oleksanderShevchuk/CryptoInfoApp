@@ -1,0 +1,40 @@
+﻿<Page x:Class="CryptoInfoApp.Views.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      Title="MainView">
+
+    <StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="10" 
+             Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Search" Command="{Binding SearchCommand}" Margin="10" />
+        </StackPanel>
+        <ListView Background="{DynamicResource Card}" ItemsSource="{Binding Coins}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding MarketCapRank}" />
+                    <GridViewColumn Header="Name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" Background="LightBlue" Padding="5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding CurrentPrice}" />
+                    <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap}" />
+                    <GridViewColumn Header="Details">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="View Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Page>

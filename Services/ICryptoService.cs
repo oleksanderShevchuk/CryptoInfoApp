@@ -6,5 +6,6 @@ namespace CryptoInfoApp.Services
     {
         Task<IEnumerable<Coin>> GetTopCoinsAsync(int count);
         Task<CoinDetail> GetCoinDetailAsync(string coinId);
+        Task<IEnumerable<Coin>> GetAllCoinsAsync();
     }
 }

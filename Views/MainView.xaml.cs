@@ -3,11 +3,11 @@
 namespace CryptoInfoApp.Views
 {
     /// <summary>
-    /// Interaction logic for CoinDetailView.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class CoinDetailView : Page
+    public partial class MainView : Page
     {
-        public CoinDetailView()
+        public MainView()
         {
             InitializeComponent();
         }

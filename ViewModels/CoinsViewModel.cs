@@ -10,21 +10,19 @@ using System.Windows.Input;
 
 namespace CryptoInfoApp.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class CoinsViewModel : INotifyPropertyChanged
     {
-        private readonly int COUNT_COINS = 10;
         private readonly ICryptoService _cryptoService;
         private ObservableCollection<Coin> _coins;
         private ObservableCollection<Coin> _allCoins;
         private string _searchQuery;
-        public MainViewModel(ICryptoService cryptoService)
+        public CoinsViewModel(ICryptoService cryptoService)
         {
             _cryptoService = cryptoService;
-            LoadDataCommand = new RelayCommand(async () => await LoadData());
-            SearchCommand = new RelayCommand(param => ExecuteSearch());
+            LoadDataCommand = new RelayCommand(async () => await LoadAllCoins());
             ShowDetailsCommand = new RelayCommand(param => ShowDetails(param));
-            NavigateCommand = new RelayCommand(param => ExecuteNavigate(param));
-            LoadData();
+            SearchCommand = new RelayCommand(param => ExecuteSearch());
+            LoadAllCoins();
         }
         public ObservableCollection<Coin> Coins
         {
@@ -45,18 +43,16 @@ namespace CryptoInfoApp.ViewModels
                 ExecuteSearch();
             }
         }
-        public ICommand ShowDetailsCommand { get; }
         public ICommand LoadDataCommand { get; }
+        public ICommand ShowDetailsCommand { get; }
         public ICommand SearchCommand { get; }
-        public ICommand NavigateCommand { get; }
 
-        private async Task LoadData()
+        private async Task LoadAllCoins()
         {
-            var coins = await _cryptoService.GetTopCoinsAsync(COUNT_COINS);
+            var coins = await _cryptoService.GetAllCoinsAsync();
             _allCoins = new ObservableCollection<Coin>(coins);
             Coins = new ObservableCollection<Coin>(coins);
         }
-
         private void ShowDetails(object parameter)
         {
             if (parameter is Coin selectedCoin)
@@ -68,37 +64,11 @@ namespace CryptoInfoApp.ViewModels
                 // Navigate to the detail view
                 var mainWindow = Application.Current.MainWindow as MainWindow;
                 mainWindow.MainView.Navigate(detailView);
-                ClearSearch();
             }
         }
         private void ExecuteSearch()
         {
-            Coins = new ObservableCollection<Coin>(SearchService.SearchCoins(_allCoins, SearchQuery));
-        }
-
-        public void ClearSearch()
-        {
-            SearchQuery = string.Empty;
-        }
-
-        private void ExecuteNavigate(object parameter)
-        {
-            if (parameter is string pageName)
-            {
-                var mainWindow = Application.Current.MainWindow as MainWindow;
-
-                switch (pageName)
-                {
-                    case "MainView":
-                        mainWindow.MainView.Navigate(new MainView { DataContext = this });
-                        break;
-                    case "CoinsView":
-                        mainWindow.MainView.Navigate(new CoinsView());
-                        break;
-
-                }
-                ClearSearch();
-            }
+            Coins = SearchService.SearchCoins(_allCoins, SearchQuery);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

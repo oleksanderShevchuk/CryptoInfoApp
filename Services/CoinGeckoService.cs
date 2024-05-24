@@ -27,5 +27,12 @@ namespace CryptoInfoApp.Services
             var responseBody = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<CoinDetail>(responseBody);
         }
+        public async Task<IEnumerable<Coin>> GetAllCoinsAsync() 
+        {
+            var response = await client.GetAsync($"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd");
+            response.EnsureSuccessStatusCode();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<Coin>>(responseBody);
+        }
     }
 }
