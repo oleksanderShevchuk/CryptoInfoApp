@@ -3,11 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CryptoInfoApp.Components"
+        xmlns:localConvert="clr-namespace:CryptoInfoApp.Helpers.Converters"
         mc:Ignorable="d"
         Title="CoinDetailView">
 
+    <Page.Resources>
+        <localConvert:PriceConverter x:Key="PriceConverter"/>
+    </Page.Resources>
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <local:Chart Grid.Column="0" />
+
+        <StackPanel Grid.Column="1">
             <TextBlock Text="{Binding CoinDetail.Name}" FontSize="24" FontWeight="Bold" />
             <TextBlock Text="{Binding CoinDetail.Symbol}" FontSize="18" />
             <TextBlock Text="Price: " FontSize="16" FontWeight="Bold"/>
@@ -17,12 +29,27 @@
             <TextBlock Text="24h Change: " FontSize="16" FontWeight="Bold"/>
             <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h}" FontSize="16"/>
             <TextBlock Text="Markets: " FontSize="16" FontWeight="Bold"/>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Height="225">  <!--Height="600"-->
-                <ListView ItemsSource="{Binding CoinDetail.Tickers}" Height="225">  <!--Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=StackPanel}}-->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Height="225">
+                <ListView ItemsSource="{Binding CoinDetail.Tickers}" Height="225">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Market" DisplayMemberBinding="{Binding Market.Name}" />
-                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Last}" />
+                            <GridViewColumn Header="Market">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding Market.Image.small}" Width="20" Height="20" Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding Market.Name}" Background="LightBlue" Padding="5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Price">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding CurrentPrice, Converter={StaticResource PriceConverter}}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Link">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CryptoInfoApp" Height="500" Width="800">
+        Title="CryptoInfoApp" Height="550" Width="1000">
 
     <DockPanel Background="{DynamicResource Backdrop}">
         <Menu DockPanel.Dock="Top">
@@ -16,7 +16,7 @@
             </MenuItem>
         </Menu>
 
-        <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="200">
+        <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
             <Button Content="Home" Command="{Binding NavigateCommand}" CommandParameter="MainView" Margin="10"/>
             <Button Content="Coins" Command="{Binding NavigateCommand}" CommandParameter="CoinsView" Margin="10"/>
         </StackPanel>
