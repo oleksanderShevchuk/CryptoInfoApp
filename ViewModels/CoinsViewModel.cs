@@ -1,16 +1,15 @@
 ﻿using CryptoInfoApp.Helpers;
+using CryptoInfoApp.Interfaces;
 using CryptoInfoApp.Models;
 using CryptoInfoApp.Services;
 using CryptoInfoApp.Views;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
 namespace CryptoInfoApp.ViewModels
 {
-    public class CoinsViewModel : INotifyPropertyChanged
+    public class CoinsViewModel : BaseViewModel
     {
         private readonly ICryptoService _cryptoService;
         private ObservableCollection<Coin> _coins;
@@ -69,12 +68,6 @@ namespace CryptoInfoApp.ViewModels
         private void ExecuteSearch()
         {
             Coins = SearchService.SearchCoins(_allCoins, SearchQuery);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

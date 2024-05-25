@@ -1,13 +1,12 @@
 ﻿using CryptoInfoApp.Helpers;
 using CryptoInfoApp.Models;
 using CryptoInfoApp.Services;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 
 namespace CryptoInfoApp.ViewModels
 {
-    public class CoinDetailViewModel : INotifyPropertyChanged
+    public class CoinDetailViewModel : BaseViewModel
     {
         private readonly CoinGeckoService _coinGeckoService;
         private CoinDetail _coinDetail;
@@ -41,12 +40,6 @@ namespace CryptoInfoApp.ViewModels
                     UseShellExecute = true
                 });
             }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

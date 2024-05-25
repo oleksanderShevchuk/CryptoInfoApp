@@ -1,16 +1,15 @@
 ﻿using CryptoInfoApp.Helpers;
+using CryptoInfoApp.Interfaces;
 using CryptoInfoApp.Models;
 using CryptoInfoApp.Services;
 using CryptoInfoApp.Views;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
 namespace CryptoInfoApp.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
         private readonly int COUNT_COINS = 10;
         private readonly ICryptoService _cryptoService;
@@ -99,12 +98,6 @@ namespace CryptoInfoApp.ViewModels
                 }
                 ClearSearch();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
