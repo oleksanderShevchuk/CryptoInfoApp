@@ -21,7 +21,6 @@ namespace CryptoInfoApp.ViewModels
                 _coinDetail = value;
                 OnPropertyChanged(nameof(CoinDetail));
                 LoadChartData(_selectedChartRange);
-                string marketImageUrl = CoinDetail.MarketData.ExchangeImageUrl;
             }
         }
         public PlotModel PlotModel

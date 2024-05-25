@@ -94,6 +94,9 @@ namespace CryptoInfoApp.ViewModels
                     case "CoinsView":
                         mainWindow.MainView.Navigate(new CoinsView());
                         break;
+                    case "ConvertView":
+                        mainWindow.MainView.Navigate(new ConvertView());
+                        break;
 
                 }
                 ClearSearch();

@@ -33,20 +33,11 @@
                 <ListView ItemsSource="{Binding CoinDetail.Tickers}" Height="225">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Market">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                            <Image Source="{Binding Market.Image.small}" Width="20" Height="20" Margin="0,0,5,0"/>
-                                            <TextBlock Text="{Binding Market.Name}" Background="LightBlue" Padding="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            <GridViewColumn Header="Market" DisplayMemberBinding="{Binding Market.Name}" />
                             <GridViewColumn Header="Price">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding CurrentPrice, Converter={StaticResource PriceConverter}}" />
+                                        <TextBlock Text="{Binding Last, Converter={StaticResource PriceConverter}}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

@@ -19,6 +19,7 @@
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
             <Button Content="Home" Command="{Binding NavigateCommand}" CommandParameter="MainView" Margin="10"/>
             <Button Content="Coins" Command="{Binding NavigateCommand}" CommandParameter="CoinsView" Margin="10"/>
+            <Button Content="Convert" Command="{Binding NavigateCommand}" CommandParameter="ConvertView" Margin="10"/>
         </StackPanel>
 
         <Frame x:Name="MainView" NavigationUIVisibility="Hidden"/>
