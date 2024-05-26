@@ -4,61 +4,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-       xmlns:local="clr-namespace:CryptoInfoApp.Helpers.Converters"
+       xmlns:components="clr-namespace:CryptoInfoApp.Components" 
         d:DesignHeight="450" d:DesignWidth="500">
+    <Border Style="{DynamicResource PageStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    <Page.Resources>
-        <local:MarketCapConverter x:Key="MarketCapConverter"/>
-        <local:PriceConverter x:Key="PriceConverter"/>
-    </Page.Resources>
-
-    <StackPanel>
-
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="10" 
-             Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Content="Search" Command="{Binding SearchCommand}" Margin="10" />
-        </StackPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Height="395">
-            <ListView Background="{DynamicResource Card}" ItemsSource="{Binding Coins}" Height="395">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="#" DisplayMemberBinding="{Binding MarketCapRank}" />
-                        <GridViewColumn Header="Name">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Image}" Width="20" Height="20" Margin="0,0,5,0"/>
-                                        <TextBlock Text="{Binding Name}" Background="LightBlue" Padding="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}" />
-                        <GridViewColumn Header="Price">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding CurrentPrice, Converter={StaticResource PriceConverter}}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Market Cap">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding MarketCap, Converter={StaticResource MarketCapConverter}}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Details">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="View Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ScrollViewer>
-    </StackPanel>
+            <components:Search Grid.Row="0" />
+            <components:TableCoins Grid.Row="1" Coins="{Binding Coins}"/>
+        </Grid>
+    </Border>
 </Page>
