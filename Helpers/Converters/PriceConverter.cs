@@ -9,7 +9,7 @@ namespace CryptoInfoApp.Helpers.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
-                return null;
+                return null!;
             if (value is decimal price)
             {
                 string formattedPrice = price.ToString("#,0.####", CultureInfo.InvariantCulture);
@@ -21,7 +21,7 @@ namespace CryptoInfoApp.Helpers.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             MessageBox.Show("ConvertBack is not implement!");
-            return null;
+            return null!;
         }
     }
 }

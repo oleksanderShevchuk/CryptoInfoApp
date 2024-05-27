@@ -67,7 +67,7 @@ namespace CryptoInfoApp.ViewModels
                 };
                 // Navigate to the detail view
                 var mainWindow = Application.Current.MainWindow as MainWindow;
-                mainWindow.MainView.Navigate(detailView);
+                mainWindow?.MainView.Navigate(detailView);
                 ClearSearch();
             }
         }
@@ -93,13 +93,13 @@ namespace CryptoInfoApp.ViewModels
                 switch (pageName)
                 {
                     case Titles.MainView:
-                        mainWindow.MainView.Navigate(new MainView { DataContext = this });
+                        mainWindow?.MainView.Navigate(new MainView { DataContext = this });
                         break;
                     case Titles.CoinsView:
-                        mainWindow.MainView.Navigate(new CoinsView());
+                        mainWindow?.MainView.Navigate(new CoinsView());
                         break;
                     case Titles.ConvertView:
-                        mainWindow.MainView.Navigate(new ConvertView());
+                        mainWindow?.MainView.Navigate(new ConvertView());
                         break;
 
                 }

@@ -83,7 +83,7 @@ namespace CryptoInfoApp.ViewModels
             ConvertCommand = new RelayCommand(CalculateExchangeResult);
             ClearCommand = new RelayCommand(Clear);
         }
-        private async void LoadAvailableCoins()
+        private async Task LoadAvailableCoins()
         {
             AvailableCoins = await _coinGeckoService.GetAllCoinsAsync();
         }
@@ -101,8 +101,8 @@ namespace CryptoInfoApp.ViewModels
         }
         private void Clear(object parameter)
         {
-            SelectedFromCurrency = null;
-            SelectedToCurrency = null;
+            SelectedFromCurrency = null!;
+            SelectedToCurrency = null!;
             AmountToExchange = string.Empty;
             ExchangeResult = string.Empty;
             SelectedToCurrencySymbol = string.Empty;

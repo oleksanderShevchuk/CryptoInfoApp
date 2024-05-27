@@ -59,7 +59,7 @@ namespace CryptoInfoApp.ViewModels
             ChangeChartRangeCommand = new RelayCommand(ChangeChartRange);
         }
 
-        private async void LoadCoinDetail(string coinId)
+        private async Task LoadCoinDetail(string coinId)
         {
             CoinDetail = await _coinGeckoService.GetCoinDetailAsync(coinId);
         }
@@ -75,9 +75,11 @@ namespace CryptoInfoApp.ViewModels
                 });
             }
         }
-        private async void LoadChartData(string range)
+        private async Task LoadChartData(string range)
         {
             long from, to;
+            from = DateTimeOffset.UtcNow.AddDays(-1).ToUnixTimeSeconds();
+            to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             switch (range)
             {
                 case ChartRangeConstants.OneDay:
@@ -94,10 +96,6 @@ namespace CryptoInfoApp.ViewModels
                     break;
                 case ChartRangeConstants.OneYear:
                     from = DateTimeOffset.UtcNow.AddYears(-1).ToUnixTimeSeconds();
-                    to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                    break;
-                default:
-                    from = DateTimeOffset.UtcNow.AddDays(-1).ToUnixTimeSeconds();
                     to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     break;
             }

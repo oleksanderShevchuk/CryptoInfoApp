@@ -5,13 +5,13 @@ namespace CryptoInfoApp.Models
     public class Coin
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = string.Empty;
 
         [JsonProperty("symbol")]
-        public string Symbol { get; set; }
+        public string Symbol { get; set; } = string.Empty;
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [JsonProperty("current_price")]
         public decimal CurrentPrice { get; set; }
@@ -26,6 +26,6 @@ namespace CryptoInfoApp.Models
         public decimal TotalVolume { get; set; }
 
         [JsonProperty("image")]
-        public string Image { get; set; }
+        public string Image { get; set; } = string.Empty;
     }
 }

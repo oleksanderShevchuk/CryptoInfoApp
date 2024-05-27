@@ -17,7 +17,7 @@ namespace CryptoInfoApp.Helpers.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             MessageBox.Show("ConvertBack is not implement!");
-            return null;
+            return null!;
         }
     }
 }
