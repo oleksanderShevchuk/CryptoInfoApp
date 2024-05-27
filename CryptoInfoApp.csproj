@@ -15,4 +15,8 @@
     <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

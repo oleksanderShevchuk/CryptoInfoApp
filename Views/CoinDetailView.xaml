@@ -6,75 +6,78 @@
         xmlns:local="clr-namespace:CryptoInfoApp.Components"
         xmlns:localConvert="clr-namespace:CryptoInfoApp.Helpers.Converters"
         mc:Ignorable="d"
-        Title="CoinDetailView" MinWidth="500">
+        Title="CoinDetailView" MinWidth="500" >
 
     <Page.Resources>
         <localConvert:PriceConverter x:Key="PriceConverter"/>
         <localConvert:MarketCapConverter x:Key="MarketCapConverter"/>
     </Page.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+    <Border  CornerRadius="20" Margin="10" Style="{StaticResource BorderStyle}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        <local:Chart Grid.Column="0" />
+            <local:Chart Grid.Column="0" />
 
-        <StackPanel Grid.Column="1" Margin="10" Width="Auto" MinWidth="200">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
-                <Image Source="{Binding CoinDetail.Image.ThumbUrl}" Width="30" Height="30" Margin="0,0,5,0"/>
-                <TextBlock Text="{Binding CoinDetail.Name}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
-            </StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Price:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
-                <TextBlock Text="{Binding CoinDetail.MarketData.CurrentPrice[usd], Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Volume:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
-                <TextBlock Text="{Binding CoinDetail.MarketData.TotalVolume[usd], Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="24h Change:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
-                <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h, Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
-            </Grid>
+            <StackPanel Grid.Column="1" Margin="10" Width="Auto" MinWidth="200">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                    <Image Source="{Binding CoinDetail.Image.ThumbUrl}" Width="30" Height="30" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding CoinDetail.Name}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Price:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
+                    <TextBlock Text="{Binding CoinDetail.MarketData.CurrentPrice[usd], Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Volume:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
+                    <TextBlock Text="{Binding CoinDetail.MarketData.TotalVolume[usd], Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="24h Change:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
+                    <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h, Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
+                </Grid>
 
-            <TextBlock Text="Markets:" FontSize="16" FontWeight="Bold" Margin="5"/>
+                <TextBlock Text="Markets:" FontSize="16" FontWeight="Bold" Margin="5"/>
 
-            <DataGrid Grid.Column="1" AutoGenerateColumns="False" HeadersVisibility="Column" MinHeight="200" Height="330" Margin="5" IsReadOnly="True" 
+                <DataGrid Grid.Column="1" AutoGenerateColumns="False" HeadersVisibility="Column" MinHeight="200" Height="330" Margin="5" IsReadOnly="True" 
                             ItemsSource="{Binding CoinDetail.Tickers}" ItemContainerStyle="{StaticResource DataGridRowStyle}"  
-                          Style="{DynamicResource DataGridStyle}">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Market" MinWidth="70" >
-                        <DataGridTemplateColumn.CellTemplate >
-                            <DataTemplate >
-                                <TextBlock Text="{Binding Market.Name}" TextAlignment="Center" VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Last}" 
+                            Style="{DynamicResource DataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Market" MinWidth="70">
+                            <DataGridTemplateColumn.CellTemplate >
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding Market.Name}" TextAlignment="Center" VerticalAlignment="Center" 
+                                               Style="{StaticResource CenteredCellStyle}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Last}" 
                                             Width="*" MinWidth="90" ElementStyle="{StaticResource CenteredCellStyle}"/>
-                    <DataGridTemplateColumn Header="Link" Width="*" MinWidth="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="View" Cursor="Hand" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                        <DataGridTemplateColumn Header="Link" Width="*" MinWidth="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="View" Cursor="Hand" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                 CommandParameter="{Binding TradeUrl}" Style="{StaticResource ButtonStyle}" Width="95"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Page>

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ConvertView">
-    <Border  BorderThickness="2" CornerRadius="20" Padding="20" Background="#DEE7F7">
+    <Border  CornerRadius="20" Style="{StaticResource BorderStyle}" Margin="10">
         <Grid VerticalAlignment="Center" Width="350"  MinWidth="250" MinHeight="390" >
 
             <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                     </ComboBox>
 
                     <TextBlock Text="Count" FontSize="14" FontWeight="Bold" />
-                    <TextBox Text="{Binding AmountToExchange}" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox Text="{Binding AmountToExchange}" Style="{DynamicResource TextBoxStyle}" Padding="5 5 0 5"/>
                     <TextBlock  Margin="5 10 0 10" FontWeight="Bold" FontSize="14">
                     <Run Text="{Binding ExchangeResult}" />
                     <Run Text="{Binding SelectedToCurrencySymbol}" FontWeight="Bold" />
