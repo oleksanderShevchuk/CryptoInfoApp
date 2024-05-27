@@ -6,42 +6,49 @@
       xmlns:local="clr-namespace:CryptoInfoApp.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      DataContext="{Binding}"
       Title="ConvertView">
+    <Border  BorderThickness="2" CornerRadius="20" Padding="20" Background="#DEE7F7">
+        <Grid VerticalAlignment="Center" Width="350"  MinWidth="250" MinHeight="390" >
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock Text="Crypto Exchange" FontSize="24" FontWeight="Bold" Margin="0 10" HorizontalAlignment="Center"/>
-        <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray" Margin="20" Padding="20">
-            <StackPanel>
-                <ComboBox ItemsSource="{Binding AvailableCoins}"
+            <TextBlock Text="Crypto Exchange" FontSize="24" FontWeight="Bold" Margin="0 10" HorizontalAlignment="Center" />
+            <Border Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Gray" Margin="20" Padding="20" 
+                Style="{DynamicResource PageStyle}">
+                <StackPanel>
+                    <TextBlock Text="From" FontSize="14" FontWeight="Bold"  />
+                    <ComboBox ItemsSource="{Binding AvailableCoins}"
                           DisplayMemberPath="Name"
                           SelectedItem="{Binding SelectedFromCurrency}"
-                          Margin="0 10">
-                </ComboBox>
-                <ComboBox ItemsSource="{Binding AvailableCoins}"
+                          Style="{DynamicResource ComboBoxFlatStyle}"
+                           Margin="0 0 0 10">
+                    </ComboBox>
+                    <TextBlock Text="To" FontSize="14" FontWeight="Bold" />
+                    <ComboBox ItemsSource="{Binding AvailableCoins}"
                            DisplayMemberPath="Name"
                            SelectedItem="{Binding SelectedToCurrency}"
-                           Margin="0 10">
-                </ComboBox>
+                           Style="{DynamicResource ComboBoxFlatStyle}"
+                           Margin="0 0 0 10">
+                    </ComboBox>
 
-                <TextBox Text="{Binding AmountToExchange}" Margin="0 10" />
-                <TextBlock Margin="0 10">
+                    <TextBlock Text="Count" FontSize="14" FontWeight="Bold" />
+                    <TextBox Text="{Binding AmountToExchange}" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBlock  Margin="5 10 0 10" FontWeight="Bold" FontSize="14">
                     <Run Text="{Binding ExchangeResult}" />
-                    <Run Text=" "/>
-                    <Run Text="{Binding SelectedToCurrencySymbol}" FontWeight="Bold"/>
-                </TextBlock>
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
-                    <Button Content="Convert" Command="{Binding ConvertCommand}" Margin="10 2" Padding="4 2"/>
-                    <Button Content="Clear" Command="{Binding ClearCommand}" Margin="10 2" Padding="10 2"/>
+                    <Run Text="{Binding SelectedToCurrencySymbol}" FontWeight="Bold" />
+                    </TextBlock>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
+                        <Button Content="Convert" Command="{Binding ConvertCommand}" Margin="5 0" Padding="15 10"
+                            Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="Clear" Command="{Binding ClearCommand}" Margin="5 0" Padding="20 10"
+                            Style="{StaticResource ButtonStyle}"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Border>
-
-    </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Page>

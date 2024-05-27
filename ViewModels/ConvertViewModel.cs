@@ -57,7 +57,7 @@ namespace CryptoInfoApp.ViewModels
 
         public string ExchangeResult
         {
-            get { return $"Result: {_exchangeResult}"; }
+            get { return $"Result:  {_exchangeResult}"; }
             set
             {
                 _exchangeResult = value;
