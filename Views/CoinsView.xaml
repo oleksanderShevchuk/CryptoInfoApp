@@ -6,7 +6,7 @@
       mc:Ignorable="d"
        xmlns:components="clr-namespace:CryptoInfoApp.Components" 
         d:DesignHeight="450" d:DesignWidth="500">
-    <Border Style="{DynamicResource PageStyle}">
+    <Border Style="{DynamicResource PageStyle}" CornerRadius="20" Margin="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

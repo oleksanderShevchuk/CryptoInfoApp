@@ -7,7 +7,7 @@
       xmlns:components="clr-namespace:CryptoInfoApp.Components" 
       Title="MainView">
 
-    <Border Style="{DynamicResource PageStyle}">
+    <Border Style="{DynamicResource PageStyle}" CornerRadius="20" Margin="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

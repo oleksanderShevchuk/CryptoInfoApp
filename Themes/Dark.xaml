@@ -97,7 +97,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border BorderBrush="Transparent"
-                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderThickness="3"
                             Background="#aa6f21"
                             CornerRadius="20"
                             Padding="5 0 0 0">
