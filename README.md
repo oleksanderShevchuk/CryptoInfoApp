@@ -49,28 +49,26 @@ This repository contains a C# application built using the .NET platform and WPF 
 Here are some screenshots of the application to give you a quick look at what to expect:
 
 ### Home Page
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/2da69a5c-f959-4e9b-bbaa-7c923fcea329)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/1ad09c43-3ec1-483a-af13-6f4e0673a49b)
 *The home page displays the top 10 cryptocurrencies.*
 
 ### Details Page
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/b8249a99-3076-4e88-a8d0-7196b7d832e9)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/3fd0b267-26d1-474e-a015-9e91f6b84d93)
 *The details page shows comprehensive information about a selected cryptocurrency, including price, volume, market details, and a Japanese candlestick chart.*
 
 ### Coins Page
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/f17f2c75-ea02-4cbf-9f2a-42d1cd02c7c4)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/8713879a-1948-4348-b294-d381bd39e120)
 *The page with all Coins and the search to find specific cryptocurrencies by name or code.*
 
 ### Converter Page
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/2c25403d-9068-41e1-82d7-177d0d55c5a0)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/14fb4d18-933d-4384-816c-9d013cce0db3)
 *The currency converter page allows you to convert one cryptocurrency to another.*
 
-### Light Theme
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/22b24b8a-d77b-4526-93b9-f3dae822ca06)
-*The application in light theme.*
-
 ### Dark Theme
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/da2f95d0-2a55-497e-a79f-65af68e30491)
-![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/418efc03-cde3-4e31-9fcf-8029e79bf046)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/333e6280-d62d-48d1-b54b-0ce751131f5a)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/dd155c30-73c4-4992-9aec-8f472ec3de80)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/f4d17cd4-37ec-4d6f-9085-23c5e6c04071)
+![image](https://github.com/oleksanderShevchuk/CryptoInfoApp/assets/88186733/1c751ed4-f806-406c-afeb-20af9792b217)
 *The application in dark theme.*
 
 ## License
