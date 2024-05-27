@@ -45,6 +45,7 @@ namespace CryptoInfoApp.ViewModels
             }
         }
         public ICommand NavigateCommand { get; }
+        public ICommand ChangeChartRangeCommand { get; }
         public CoinDetailViewModel(string coinId)
         {
             PlotModel = new PlotModel { Title = "Crypto Price Chart" };
@@ -52,6 +53,7 @@ namespace CryptoInfoApp.ViewModels
             LoadCoinDetail(coinId);
             NavigateCommand = new RelayCommand(NavigateToUrl);
             SelectedChartRange = "1d"; // by default 
+            ChangeChartRangeCommand = new RelayCommand(ChangeChartRange);
         }
 
         private async void LoadCoinDetail(string coinId)
@@ -98,7 +100,7 @@ namespace CryptoInfoApp.ViewModels
             }
             var coinData = await _coinGeckoService.GetCoinMarketChartDataAsync(CoinDetail.Id, "usd", from, to);
 
-            var plotModel = new PlotModel { Title = $"{CoinDetail.Id.ToUpper()} Price Chart" };
+            var plotModel = new PlotModel { Title = $"{CoinDetail.Name} to USD" };
             var series = new LineSeries();
 
             foreach (var dataPoint in coinData)
@@ -112,6 +114,13 @@ namespace CryptoInfoApp.ViewModels
         private void ChangeChartRange(string range)
         {
             LoadChartData(range);
+        }
+        private void ChangeChartRange(object parameter)
+        {
+            if (parameter is string range)
+            {
+                LoadChartData(range);
+            }
         }
     }
 }

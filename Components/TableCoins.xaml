@@ -39,7 +39,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="View Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                            CommandParameter="{Binding}" Style="{StaticResource ButthonStyle}" Width="95"/>
+                            CommandParameter="{Binding}" Style="{StaticResource ButtonStyle}" Width="95"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

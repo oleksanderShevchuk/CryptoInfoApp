@@ -17,6 +17,8 @@ namespace CryptoInfoApp.Models
         public MarketData MarketData { get; set; }
 
         [JsonProperty("tickers")]
-        public List<Ticker> Tickers { get; set; }
+        public IEnumerable<Ticker> Tickers { get; set; }
+        [JsonProperty("image")]
+        public CoinImages Image { get; set; }
     }
 }

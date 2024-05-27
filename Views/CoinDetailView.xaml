@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:CryptoInfoApp.Components"
         xmlns:localConvert="clr-namespace:CryptoInfoApp.Helpers.Converters"
         mc:Ignorable="d"
-        Title="CoinDetailView">
+        Title="CoinDetailView" MinWidth="500">
 
     <Page.Resources>
         <localConvert:PriceConverter x:Key="PriceConverter"/>
+        <localConvert:MarketCapConverter x:Key="MarketCapConverter"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,43 +20,61 @@
 
         <local:Chart Grid.Column="0" />
 
-        <StackPanel Grid.Column="1">
-            <TextBlock Text="{Binding CoinDetail.Name}" FontSize="24" FontWeight="Bold" />
-            <TextBlock Text="{Binding CoinDetail.Symbol}" FontSize="18" />
-            <TextBlock Text="Price: " FontSize="16" FontWeight="Bold"/>
-            <TextBlock Text="{Binding CoinDetail.MarketData.CurrentPrice[usd]}" FontSize="16"/>
-            <TextBlock Text="Volume: " FontSize="16" FontWeight="Bold"/>
-            <TextBlock Text="{Binding CoinDetail.MarketData.TotalVolume[usd]}" FontSize="16"/>
-            <TextBlock Text="24h Change: " FontSize="16" FontWeight="Bold"/>
-            <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h}" FontSize="16"/>
-            <TextBlock Text="Markets: " FontSize="16" FontWeight="Bold"/>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Height="225">
-                <ListView ItemsSource="{Binding CoinDetail.Tickers}" Height="225">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Market" DisplayMemberBinding="{Binding Market.Name}" />
-                            <GridViewColumn Header="Price">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Last, Converter={StaticResource PriceConverter}}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Link">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="View" Foreground="Blue" Cursor="Hand">
-                                            <TextBlock.InputBindings>
-                                                <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding TradeUrl}" />
-                                            </TextBlock.InputBindings>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </ScrollViewer>
+        <StackPanel Grid.Column="1" Margin="10" Width="Auto" MinWidth="200">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                <Image Source="{Binding CoinDetail.Image.ThumbUrl}" Width="30" Height="30" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding CoinDetail.Name}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Price:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
+                <TextBlock Text="{Binding CoinDetail.MarketData.CurrentPrice[usd], Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Volume:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
+                <TextBlock Text="{Binding CoinDetail.MarketData.TotalVolume[usd], Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="24h Change:" Style="{StaticResource HeaderStyle}" Grid.Column="0"/>
+                <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h, Converter={StaticResource PriceConverter}}" Style="{StaticResource ValueStyle}" Grid.Column="1" TextAlignment="Right"/>
+            </Grid>
+
+            <TextBlock Text="Markets:" FontSize="16" FontWeight="Bold" Margin="5"/>
+
+            <DataGrid Grid.Column="1" AutoGenerateColumns="False" HeadersVisibility="Column" MinHeight="200" Height="330" Margin="5" IsReadOnly="True" 
+                            ItemsSource="{Binding CoinDetail.Tickers}" ItemContainerStyle="{StaticResource DataGridRowStyle}"  
+                          Style="{DynamicResource DataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Market" MinWidth="70" >
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Market.Name}" TextAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Last}" 
+                                            Width="*" MinWidth="90" ElementStyle="{StaticResource CenteredCellStyle}"/>
+                    <DataGridTemplateColumn Header="Link" Width="*" MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="View" Cursor="Hand" Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding TradeUrl}" Style="{StaticResource ButtonStyle}" Width="95"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Page>
