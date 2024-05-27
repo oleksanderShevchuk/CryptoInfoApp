@@ -4,17 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CryptoInfoApp" Height="650" Width="1200" MinWidth="980" MinHeight="450"
-        Icon="C:\Users\oleks\source\repos\CryptoInfoApp\Images\logo.png"
+        Title="CryptoInfoApp" Height="660" Width="1200" MinWidth="980" MinHeight="450"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
 
-
-    <Border Style="{DynamicResource BorderStyle}"
-            Name="MainWindowBorder"
-            CornerRadius="20">
-
+    <DockPanel MouseLeftButtonDown="Window_MouseLeftButtonDown">
         <Grid Margin="0">
 
             <Grid.ColumnDefinitions>
@@ -27,7 +22,6 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="0"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="5"/>
             </Grid.RowDefinitions>
 
             <!-- Title Bar -->
@@ -68,5 +62,5 @@
             <!-- Main Content Frame -->
             <Frame Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainView" NavigationUIVisibility="Hidden"/>
         </Grid>
-    </Border>
+    </DockPanel>
 </Window>

@@ -43,13 +43,12 @@ namespace CryptoInfoApp
         {
             Close();
         }
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
                 DragMove();
-
-            if (e.ClickCount == 2 && e.ChangedButton == MouseButton.Left)
-                WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
+            }
         }
     }
 }
