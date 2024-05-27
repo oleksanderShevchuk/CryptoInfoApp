@@ -20,7 +20,8 @@ namespace CryptoInfoApp.ViewModels
             set {
                 _coinDetail = value;
                 OnPropertyChanged(nameof(CoinDetail));
-                LoadChartData(_selectedChartRange);
+                if (CoinDetail != null )
+                    LoadChartData(_selectedChartRange);
             }
         }
         public PlotModel PlotModel
@@ -99,15 +100,16 @@ namespace CryptoInfoApp.ViewModels
                     break;
             }
             var coinData = await _coinGeckoService.GetCoinMarketChartDataAsync(CoinDetail.Id, "usd", from, to);
-
             var plotModel = new PlotModel { Title = $"{CoinDetail.Name} to USD" };
             var series = new LineSeries();
 
-            foreach (var dataPoint in coinData)
+            if (coinData != null)
             {
-                series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(dataPoint.Key.UtcDateTime), dataPoint.Value));
+                foreach (var dataPoint in coinData)
+                {
+                    series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(dataPoint.Key.UtcDateTime), dataPoint.Value));
+                }
             }
-
             plotModel.Series.Add(series);
             PlotModel = plotModel;
         }

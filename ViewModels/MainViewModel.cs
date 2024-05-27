@@ -72,7 +72,10 @@ namespace CryptoInfoApp.ViewModels
         }
         private void ExecuteSearch()
         {
-            Coins = new ObservableCollection<Coin>(SearchService.SearchCoins(_allCoins, SearchQuery));
+            if (_allCoins != null)
+            {
+                Coins = new ObservableCollection<Coin>(SearchService.SearchCoins(_allCoins, SearchQuery));
+            }
         }
 
         public void ClearSearch()
