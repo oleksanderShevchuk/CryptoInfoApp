@@ -5,24 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="CryptoInfoApp" Height="650" Width="1200" MinWidth="980" MinHeight="450"
-        Icon="C:\Users\oleks\source\repos\CryptoInfoApp\Images\logo.png">
+        Icon="C:\Users\oleks\source\repos\CryptoInfoApp\Images\logo.png"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
 
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Settings">
-                <MenuItem Header="Theme">
-                    <MenuItem Header="Light" Click="LightThemeClick"/>
-                    <MenuItem Header="Dark" Click="DarkThemeClick"/>
-                </MenuItem>
-            </MenuItem>
-        </Menu>
 
-        <StackPanel DockPanel.Dock="Left" Width="200" Background="{DynamicResource SidebarBackground}"  VerticalAlignment="Center" Margin="0 0 5 0">
-            <RadioButton  Content="Home" Command="{Binding NavigateCommand}" CommandParameter="MainView" Style="{StaticResource MenuButtonStyle}"/>
-            <RadioButton  Content="Coins" Command="{Binding NavigateCommand}" CommandParameter="CoinsView" Style="{StaticResource MenuButtonStyle}"/>
-            <RadioButton  Content="Convert" Command="{Binding NavigateCommand}" CommandParameter="ConvertView" Style="{StaticResource MenuButtonStyle}"/>
-        </StackPanel>
+    <Border Style="{DynamicResource BorderStyle}"
+            Name="MainWindowBorder"
+            CornerRadius="20">
 
-        <Frame x:Name="MainView" NavigationUIVisibility="Hidden"/>
-    </DockPanel>
+        <Grid Margin="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="140"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title Bar -->
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Application Name -->
+                <TextBlock Text="Crypto Info App"
+                           VerticalAlignment="Center"
+                           Margin="20,10,0,0"
+                           FontSize="26"
+                           Grid.Column="0"/>
+
+                <!-- Window Control Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="0,10,10,0">
+                    <Button Style="{DynamicResource WindowControlButtonStyle}" Height="30" Width="30" Content="&#xE921;" Click="MinimizeButton_Click"/>
+                    <Button Style="{DynamicResource WindowControlButtonStyle}" Height="30" Width="30" Content="&#xE922;" Click="MaximizeButton_Click"/>
+                    <Button Style="{DynamicResource WindowControlButtonStyle}" Height="30" Width="30" Content="&#xE8BB;" Click="CloseButton_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Navigation Buttons -->
+            <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="10, 150, 0, 0">
+                <RadioButton Content="Home" Command="{Binding NavigateCommand}" CommandParameter="MainView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
+                <RadioButton Content="Coins" Command="{Binding NavigateCommand}" CommandParameter="CoinsView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
+                <RadioButton Content="Convert" Command="{Binding NavigateCommand}" CommandParameter="ConvertView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
+                <StackPanel Margin="0 120">
+                    <Button Content="Light Theme"  Click="SwitchLightThemeClick" Style="{StaticResource ButtonStyle}" 
+                                 Margin="2" Height="50" FontSize="14" Width="95"/>
+                    <Button Content="Dark Theme" Click="SwitchDarkThemeClick" Style="{StaticResource ButtonStyle}" 
+                               Margin="2" Height="50" FontSize="14" Width="95"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Main Content Frame -->
+            <Frame Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainView" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Border>
 </Window>

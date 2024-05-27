@@ -3,6 +3,7 @@ using CryptoInfoApp.Services;
 using CryptoInfoApp.ViewModels;
 using CryptoInfoApp.Views;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CryptoInfoApp
 {
@@ -19,13 +20,36 @@ namespace CryptoInfoApp
 
             MainView.Navigate(new MainView { DataContext = DataContext });
         }
-        private void LightThemeClick(object sender, RoutedEventArgs e)
+        private void SwitchLightThemeClick(object sender, RoutedEventArgs e)
         {
             AppTheme.ChangeTheme(new Uri($"Themes/Light.xaml", UriKind.Relative));
         }
-        private void DarkThemeClick(object sender, RoutedEventArgs e)
+        private void SwitchDarkThemeClick(object sender, RoutedEventArgs e)
         {
             AppTheme.ChangeTheme(new Uri($"Themes/Dark.xaml", UriKind.Relative));
+        }
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+
+            if (e.ClickCount == 2 && e.ChangedButton == MouseButton.Left)
+                WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
         }
     }
 }

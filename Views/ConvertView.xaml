@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ConvertView">
-    <Border  CornerRadius="20" Style="{StaticResource BorderStyle}" Margin="10">
+    <Border  CornerRadius="20" Style="{StaticResource RoundedBorderStyle}" Margin="10">
         <Grid VerticalAlignment="Center" Width="350"  MinWidth="250" MinHeight="390" >
 
             <Grid.RowDefinitions>
