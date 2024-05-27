@@ -1,4 +1,5 @@
-﻿using CryptoInfoApp.Interfaces;
+﻿using CryptoInfoApp.Data;
+using CryptoInfoApp.Interfaces;
 using CryptoInfoApp.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -20,7 +21,7 @@ namespace CryptoInfoApp.Services
         {
             try
             {
-                var response = await client.GetAsync($"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page={numberOfCoins}&page=1&sparkline=false");
+                var response = await client.GetAsync($"{ApiConstants.CoinGeckoBaseUrl}markets?vs_currency=usd&order=market_cap_desc&per_page={numberOfCoins}&page=1&sparkline=false");
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<IEnumerable<Coin>>(responseBody);
@@ -35,7 +36,7 @@ namespace CryptoInfoApp.Services
         {
             try
             {
-                var response = await client.GetAsync($"https://api.coingecko.com/api/v3/coins/{coinId}?localization=false&tickers=true&market_data=true&community_data=false&developer_data=false&sparkline=false");
+                var response = await client.GetAsync($"{ApiConstants.CoinGeckoBaseUrl}{coinId}?localization=false&tickers=true&market_data=true&community_data=false&developer_data=false&sparkline=false");
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<CoinDetail>(responseBody);
@@ -50,7 +51,7 @@ namespace CryptoInfoApp.Services
         {
             try
             {
-                var response = await client.GetAsync($"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd");
+                var response = await client.GetAsync($"{ApiConstants.CoinGeckoBaseUrl}markets?vs_currency=usd");
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<IEnumerable<Coin>>(responseBody);
@@ -65,7 +66,7 @@ namespace CryptoInfoApp.Services
         {
             try
             {
-                string url = $"https://api.coingecko.com/api/v3/coins/{coinId}/market_chart/range?vs_currency={vsCurrency}&from={from}&to={to}";
+                string url = $"{ApiConstants.CoinGeckoBaseUrl}{coinId}/market_chart/range?vs_currency={vsCurrency}&from={from}&to={to}";
                 var response = await client.GetAsync(url);
 
                 response.EnsureSuccessStatusCode();

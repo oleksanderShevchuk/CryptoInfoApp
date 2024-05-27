@@ -1,4 +1,5 @@
-﻿using CryptoInfoApp.Helpers;
+﻿using CryptoInfoApp.Data;
+using CryptoInfoApp.Helpers;
 using CryptoInfoApp.Models;
 using CryptoInfoApp.Services;
 using OxyPlot;
@@ -11,6 +12,7 @@ namespace CryptoInfoApp.ViewModels
 {
     public class CoinDetailViewModel : BaseViewModel
     {
+        private readonly string VS_CURRENCY = "usd";
         private readonly CoinGeckoService _coinGeckoService;
         private CoinDetail _coinDetail;
         private PlotModel _plotModel;
@@ -33,7 +35,7 @@ namespace CryptoInfoApp.ViewModels
                 OnPropertyChanged(nameof(PlotModel));
             }
         }
-        public List<string> ChartRanges { get; } = new List<string> { "1d", "7d", "1m", "1y" };
+        public List<string> ChartRanges { get; } = ChartRangeConstants.All;
         public string SelectedChartRange
         {
             get { return _selectedChartRange; }
@@ -78,19 +80,19 @@ namespace CryptoInfoApp.ViewModels
             long from, to;
             switch (range)
             {
-                case "1d":
+                case ChartRangeConstants.OneDay:
                     from = DateTimeOffset.UtcNow.AddDays(-1).ToUnixTimeSeconds();
                     to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     break;
-                case "7d":
+                case ChartRangeConstants.SevenDays:
                     from = DateTimeOffset.UtcNow.AddDays(-7).ToUnixTimeSeconds();
                     to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     break;
-                case "1m":
+                case ChartRangeConstants.OneMonth:
                     from = DateTimeOffset.UtcNow.AddMonths(-1).ToUnixTimeSeconds();
                     to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     break;
-                case "1y":
+                case ChartRangeConstants.OneYear:
                     from = DateTimeOffset.UtcNow.AddYears(-1).ToUnixTimeSeconds();
                     to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     break;
@@ -99,8 +101,8 @@ namespace CryptoInfoApp.ViewModels
                     to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                     break;
             }
-            var coinData = await _coinGeckoService.GetCoinMarketChartDataAsync(CoinDetail.Id, "usd", from, to);
-            var plotModel = new PlotModel { Title = $"{CoinDetail.Name} to USD" };
+            var coinData = await _coinGeckoService.GetCoinMarketChartDataAsync(CoinDetail.Id, VS_CURRENCY, from, to);
+            var plotModel = new PlotModel { Title = $"{CoinDetail.Name} to {VS_CURRENCY}" };
             var series = new LineSeries();
 
             if (coinData != null)

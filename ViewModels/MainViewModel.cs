@@ -1,4 +1,5 @@
-﻿using CryptoInfoApp.Helpers;
+﻿using CryptoInfoApp.Data;
+using CryptoInfoApp.Helpers;
 using CryptoInfoApp.Interfaces;
 using CryptoInfoApp.Models;
 using CryptoInfoApp.Services;
@@ -91,13 +92,13 @@ namespace CryptoInfoApp.ViewModels
 
                 switch (pageName)
                 {
-                    case "MainView":
+                    case Titles.MainView:
                         mainWindow.MainView.Navigate(new MainView { DataContext = this });
                         break;
-                    case "CoinsView":
+                    case Titles.CoinsView:
                         mainWindow.MainView.Navigate(new CoinsView());
                         break;
-                    case "ConvertView":
+                    case Titles.ConvertView:
                         mainWindow.MainView.Navigate(new ConvertView());
                         break;
 
