@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="AppTitle">Крипто Додаток</sys:String>
+    <sys:String x:Key="Home">Головна</sys:String>
+    <sys:String x:Key="Coins">Монети</sys:String>
+    <sys:String x:Key="Search">Пошук</sys:String>
+    <sys:String x:Key="Convert">Конвертувати</sys:String>
+    <sys:String x:Key="LightTheme">Світла тема</sys:String>
+    <sys:String x:Key="DarkTheme">Темна тема</sys:String>
+    <sys:String x:Key="Name">Назва</sys:String>
+    <sys:String x:Key="Symbol">Символ</sys:String>
+    <sys:String x:Key="Price">Ціна</sys:String>
+    <sys:String x:Key="MarketCap">Капіталізація</sys:String>
+    <sys:String x:Key="Details">Подробиці</sys:String>
+    <sys:String x:Key="ViewDetails">Докладніше</sys:String>
+    <sys:String x:Key="Volume">Обсяг</sys:String>
+    <sys:String x:Key="Change24h">Зміна за 24 години</sys:String>
+    <sys:String x:Key="Markets">Ринки</sys:String>
+    <sys:String x:Key="Market">Ринок</sys:String>
+    <sys:String x:Key="Link">Посилання</sys:String>
+    <sys:String x:Key="View">Переглянути</sys:String>
+    <sys:String x:Key="CryptoExchange">Обмінник криптовалют</sys:String>
+    <sys:String x:Key="From">Від</sys:String>
+    <sys:String x:Key="To">До</sys:String>
+    <sys:String x:Key="Count">Розрахунок</sys:String>
+    <sys:String x:Key="Clear">Очистити</sys:String>
+</ResourceDictionary>

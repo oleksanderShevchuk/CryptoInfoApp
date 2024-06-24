@@ -2,7 +2,7 @@
 
 namespace CryptoInfoApp.Helpers
 {
-    public class AppTheme
+    public static class AppTheme
     {
         public static void ChangeTheme(Uri themeUri)
         {

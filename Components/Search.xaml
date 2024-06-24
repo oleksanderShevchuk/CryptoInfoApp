@@ -9,7 +9,7 @@
             <TextBox x:Name="SearchTextBox" MinWidth="200" Margin="0, 0, 20, 0" MinHeight="50" FontSize="18"
                      Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle}" 
                         VerticalContentAlignment="Center"  Padding="10"/>
-            <Button Content="Search" Command="{Binding SearchCommand}" Style="{StaticResource ButtonStyle}" FontSize="18" Height="50" Width="100"/>
+            <Button Content="{DynamicResource Search}" Command="{Binding SearchCommand}" Style="{StaticResource ButtonStyle}" FontSize="18" Height="50" Width="100"/>
         </StackPanel>
     </Grid>
 </UserControl>

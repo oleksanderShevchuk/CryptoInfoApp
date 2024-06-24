@@ -16,18 +16,18 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Crypto Exchange" FontSize="24" FontWeight="Bold" Margin="0 10" HorizontalAlignment="Center" />
+            <TextBlock Text="{DynamicResource CryptoExchange}" FontSize="24" FontWeight="Bold" Margin="0 10" HorizontalAlignment="Center" />
             <Border Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Gray" Margin="20" Padding="20" 
                 Style="{DynamicResource PageStyle}">
                 <StackPanel>
-                    <TextBlock Text="From" FontSize="14" FontWeight="Bold"  />
+                    <TextBlock Text="{DynamicResource From}" FontSize="14" FontWeight="Bold"  />
                     <ComboBox ItemsSource="{Binding AvailableCoins}"
                           DisplayMemberPath="Name"
                           SelectedItem="{Binding SelectedFromCurrency}"
                           Style="{DynamicResource ComboBoxFlatStyle}"
                            Margin="0 0 0 10">
                     </ComboBox>
-                    <TextBlock Text="To" FontSize="14" FontWeight="Bold" />
+                    <TextBlock Text="{DynamicResource To}" FontSize="14" FontWeight="Bold" />
                     <ComboBox ItemsSource="{Binding AvailableCoins}"
                            DisplayMemberPath="Name"
                            SelectedItem="{Binding SelectedToCurrency}"
@@ -35,16 +35,16 @@
                            Margin="0 0 0 10">
                     </ComboBox>
 
-                    <TextBlock Text="Count" FontSize="14" FontWeight="Bold" />
+                    <TextBlock Text="{DynamicResource Count}" FontSize="14" FontWeight="Bold" />
                     <TextBox Text="{Binding AmountToExchange}" Style="{DynamicResource TextBoxStyle}" Padding="5 5 0 5"/>
                     <TextBlock  Margin="5 10 0 10" FontWeight="Bold" FontSize="14">
                     <Run Text="{Binding ExchangeResult}" />
                     <Run Text="{Binding SelectedToCurrencySymbol}" FontWeight="Bold" />
                     </TextBlock>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
-                        <Button Content="Convert" Command="{Binding ConvertCommand}" Margin="5 0" Padding="15 10"
+                        <Button Content="{DynamicResource Convert}" Command="{Binding ConvertCommand}" Margin="5 0" Padding="15 10"
                             Style="{StaticResource ButtonStyle}"/>
-                        <Button Content="Clear" Command="{Binding ClearCommand}" Margin="5 0" Padding="20 10"
+                        <Button Content="{DynamicResource Clear}" Command="{Binding ClearCommand}" Margin="5 0" Padding="20 10"
                             Style="{StaticResource ButtonStyle}"/>
                     </StackPanel>
                 </StackPanel>

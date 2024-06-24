@@ -21,7 +21,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Name" Width="*" MinWidth="150">
+                <DataGridTemplateColumn Header="{DynamicResource Name}" Width="*" MinWidth="150">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -32,13 +32,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Symbol" Binding="{Binding Symbol}" Width="*" MinWidth="100" ElementStyle="{StaticResource CenteredCellStyle}"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding CurrentPrice, Converter={StaticResource PriceConverter}}" Width="*" MinWidth="120" ElementStyle="{StaticResource CenteredCellStyle}"/>
-                <DataGridTextColumn Header="Market Cap" Binding="{Binding MarketCap, Converter={StaticResource MarketCapConverter}}" Width="*" MinWidth="170" ElementStyle="{StaticResource CenteredCellStyle}"/>
-                <DataGridTemplateColumn Header="Details" Width="*" MinWidth="120">
+                <DataGridTextColumn Header="{DynamicResource Symbol}" Binding="{Binding Symbol}" Width="*" MinWidth="100" ElementStyle="{StaticResource CenteredCellStyle}"/>
+                <DataGridTextColumn Header="{DynamicResource Price}" Binding="{Binding CurrentPrice, Converter={StaticResource PriceConverter}}" Width="*" MinWidth="120" ElementStyle="{StaticResource CenteredCellStyle}"/>
+                <DataGridTextColumn Header="{DynamicResource MarketCap}" Binding="{Binding MarketCap, Converter={StaticResource MarketCapConverter}}" Width="*" MinWidth="170" ElementStyle="{StaticResource CenteredCellStyle}"/>
+                <DataGridTemplateColumn Header="{DynamicResource Details}" Width="*" MinWidth="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="View Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                            <Button Content="{DynamicResource ViewDetails}" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                             CommandParameter="{Binding}" Style="{StaticResource ButtonStyle}" Width="95"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

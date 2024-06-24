@@ -3,6 +3,7 @@ using CryptoInfoApp.Services;
 using CryptoInfoApp.ViewModels;
 using CryptoInfoApp.Views;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CryptoInfoApp
@@ -48,6 +49,19 @@ namespace CryptoInfoApp
             if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
+            }
+        }
+        private void LanguageSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox? comboBox = sender as ComboBox;
+            if (comboBox != null && comboBox.SelectedItem != null)
+            {
+                ComboBoxItem? selectedItem = comboBox.SelectedItem as ComboBoxItem;
+                if (selectedItem != null && selectedItem.Tag != null)
+                {
+                    string? selectedLanguage = selectedItem.Tag.ToString();
+                    LanguageHelper.ChangeLanguage(selectedLanguage);
+                }
             }
         }
     }

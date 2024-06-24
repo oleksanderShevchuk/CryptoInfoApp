@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CryptoInfoApp" Height="660" Width="1200" MinWidth="980" MinHeight="450"
+        Height="660" Width="1200" MinWidth="980" MinHeight="450"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
@@ -32,7 +32,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Application Name -->
-                <TextBlock Text="Crypto Info App"
+                <TextBlock Text="{DynamicResource AppTitle}"
                            VerticalAlignment="Center"
                            Margin="20,10,0,0"
                            FontSize="26"
@@ -46,15 +46,23 @@
                 </StackPanel>
             </Grid>
 
+            <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="20, 20, 30, 0">
+                <ComboBox Style="{StaticResource LanguageComboBoxStyle}" SelectionChanged="LanguageSelectionChanged" SelectedIndex="0">
+                    <ComboBoxItem Content="EN" Tag="en" Style="{StaticResource LanguageComboBoxItemStyle}"/>
+                    <ComboBoxItem Content="UK" Tag="uk" Style="{StaticResource LanguageComboBoxItemStyle}"/>
+                </ComboBox>
+            </StackPanel>
+
             <!-- Navigation Buttons -->
             <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="10, 150, 0, 0">
-                <RadioButton Content="Home" Command="{Binding NavigateCommand}" CommandParameter="MainView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
-                <RadioButton Content="Coins" Command="{Binding NavigateCommand}" CommandParameter="CoinsView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
-                <RadioButton Content="Convert" Command="{Binding NavigateCommand}" CommandParameter="ConvertView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
+               
+                <RadioButton Content="{DynamicResource Home}" Command="{Binding NavigateCommand}" CommandParameter="MainView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
+                <RadioButton Content="{DynamicResource Coins}" Command="{Binding NavigateCommand}" CommandParameter="CoinsView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
+                <RadioButton Content="{DynamicResource Convert}" Command="{Binding NavigateCommand}" CommandParameter="ConvertView" Style="{StaticResource MenuButtonStyle}" Margin="0, 5"/>
                 <StackPanel Margin="0 120">
-                    <Button Content="Light Theme"  Click="SwitchLightThemeClick" Style="{StaticResource ButtonStyle}" 
+                    <Button Content="{DynamicResource LightTheme}"  Click="SwitchLightThemeClick" Style="{StaticResource ButtonStyle}" 
                                  Margin="2" Height="50" FontSize="14" Width="95"/>
-                    <Button Content="Dark Theme" Click="SwitchDarkThemeClick" Style="{StaticResource ButtonStyle}" 
+                    <Button Content="{DynamicResource DarkTheme}" Click="SwitchDarkThemeClick" Style="{StaticResource ButtonStyle}" 
                                Margin="2" Height="50" FontSize="14" Width="95"/>
                 </StackPanel>
             </StackPanel>

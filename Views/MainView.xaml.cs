@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using CryptoInfoApp.Helpers;
+using System.Windows.Controls;
 
 namespace CryptoInfoApp.Views
 {
