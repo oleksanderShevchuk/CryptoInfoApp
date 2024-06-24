@@ -14,6 +14,7 @@ This repository contains a C# application built using the .NET platform and WPF 
 - Aesthetic UI design with optional light/dark theme support.
 - Displaying quote charts for currencies (Japanese candlestick chart).
 - Currency conversion page.
+- Supports localization languages.
 
 ## APIs Used
 
@@ -43,6 +44,7 @@ This repository contains a C# application built using the .NET platform and WPF 
    - **Search**: Search for cryptocurrencies by name or code.
    - **Converter**: Convert one cryptocurrency to another.
 3. Switch between light and dark themes from the settings menu.
+4. Switch between localization from the menu.
 
 ## Screenshots
 
